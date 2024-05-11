@@ -6,6 +6,8 @@
 #include <thread>
 #include <experimental/random>
 #include "Archivo.hpp"
+#include <ncurses.h>
+
 
 using namespace ftxui;
 using namespace std;
@@ -13,10 +15,10 @@ using namespace std;
 int main(int argc, char const* argv[]) {
     vector<string> rutasPiezas = {
         "./assets/Pajaro.txt",
-        "./assets/tuberia1.txt",
-        "./assets/Tuberia2.txt",
-        "./assets/Tuberia3.txt",
-        "./assets/tuberia4.txt",
+       // "./assets/tuberia1.txt",
+        //"./assets/Tuberia2.txt",
+        //"./assets/Tuberia3.txt",
+        //"./assets/tuberia4.txt",
 
         
     };
@@ -42,8 +44,16 @@ int main(int argc, char const* argv[]) {
             for (auto& d : dibujos) {
                 if (!d.AlcanzaFondo(40)) {
                     algunaPiezaCayendo = true;
+
+
+int tecla = getch(); // Obtenemos la tecla presionada
+                    if (tecla == ' ') { // Verificamos si la tecla presionada es un espacio
+                        d.salto();
+                    }
+
                     d.MoverHaciaAbajo();
                     d.Dibujar(Pantalla);
+                    
                 }
             }
 

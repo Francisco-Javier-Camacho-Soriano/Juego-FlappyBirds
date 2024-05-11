@@ -29,6 +29,10 @@ public:
             posicionPalabraY++;
         }
     }
+    
+void salto(){
+        posicionY++;
+    }
 
     void DesplazarX(int distancia) {
         posicionX += distancia;
