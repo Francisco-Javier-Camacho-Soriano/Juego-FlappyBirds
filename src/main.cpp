@@ -1,3 +1,8 @@
+
+//BNOTA, en caso de que no compile con make run y muestre un error, g++ src/main.cpp -o bin/space -std=c++2a -lftxui-screen -lftxui-component -lftxui-dom -lncurses -Iinclude
+//Pegar ese codigo y despues darle make run de nuevo, con eso funcionara de manera correcta.
+
+
 #include <curses.h>
 #include <iostream>
 #include <string>
