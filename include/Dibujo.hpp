@@ -1,4 +1,3 @@
-
 #pragma once
 #include <string>
 #include <list>
@@ -28,10 +27,6 @@ public:
             }
             posicionPalabraY++;
         }
-    }
-    
-void salto(){
-        posicionY++;
     }
 
     void DesplazarX(int distancia) {
@@ -66,7 +61,21 @@ void salto(){
         return posicionFinalY >= altoPantalla;
     }
 
-    void MoverHaciaAbajo() {
+    void MoverHaciaDerecha() {
         posicionX++;
     }
+
+    void MoverHaciaIzquierda() {
+        posicionX--;
+    }
+
+    void MoverHaciaAbajo() {
+        posicionY++;
+    }
+
+    void salto(){
+        posicionY--;
+    }
+
+
 };
