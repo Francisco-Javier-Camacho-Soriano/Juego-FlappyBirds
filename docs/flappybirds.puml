@@ -55,7 +55,7 @@ class Direccion
 
 Juego "1" *-- "1" Escenario
 Juego "1" *-- "1" Ave
-Juego "1" *-- "1" Puntuacion 
+Juego "1" *-- "1" Puntuacion
 Juego "1" *-- "1" Estado
 
 Escenario "1" *-- "*" Obstaculo

@@ -11,7 +11,8 @@
 using namespace ftxui;
 using namespace std;
 
-int main(int argc, char const* argv[]) {
+int main(int argc, char const *argv[])
+{
     vector<string> rutasPiezas = {
         "./assets/Pajaro.txt",
         //"./assets/tuberia1.txt",
@@ -33,7 +34,8 @@ int main(int argc, char const* argv[]) {
 
     auto Pantalla = Screen::Create(Dimension::Full(), Dimension::Full());
 
-    while (true) {
+    while (true)
+    {
         Pantalla.Clear();
         this_thread::sleep_for(0.1s);
 
@@ -41,36 +43,42 @@ int main(int argc, char const* argv[]) {
 
         bool algunaPiezaCayendo = false;
 
-        for (const auto& ruta : rutasPiezas) {
+        for (const auto &ruta : rutasPiezas)
+        {
             Archivo pieza(ruta);
             Dibujo d = pieza.CrearDibujo();
-            d.EstablecerPosicion(experimental::randint(0, 20), 0); 
+            d.EstablecerPosicion(experimental::randint(0, 20), 0);
             dibujos.push_back(d);
         }
 
-        while (true) {
-            for (auto& d : dibujos) {
-                if (!d.AlcanzaFondo(40)) {
+        while (true)
+        {
+            for (auto &d : dibujos)
+            {
+                if (!d.AlcanzaFondo(40))
+                {
                     algunaPiezaCayendo = true;
-                    
+
                     // Use getch() to get a character from the keyboard
-                    int tecla = getch(); 
-                    if (tecla == 'w' || tecla == 'W') {
+                    int tecla = getch();
+                    if (tecla == 'w' || tecla == 'W')
+                    {
                         d.salto();
                     }
-                    else if (tecla == 's' || tecla == 'S') {
-                        d.MoverHaciaAbajo(); 
+                    else if (tecla == 's' || tecla == 'S')
+                    {
+                        d.MoverHaciaAbajo();
                     }
-                    else if (tecla == 'a' || tecla == 'A') {
-                        d.MoverHaciaIzquierda(); 
+                    else if (tecla == 'a' || tecla == 'A')
+                    {
+                        d.MoverHaciaIzquierda();
                     }
-                    else if (tecla == 'd' || tecla == 'D') {
+                    else if (tecla == 'd' || tecla == 'D')
+                    {
                         d.MoverHaciaDerecha();
                     }
-                    
-                    
-                    d.Dibujar(Pantalla);
 
+                    d.Dibujar(Pantalla);
                 }
             }
 
