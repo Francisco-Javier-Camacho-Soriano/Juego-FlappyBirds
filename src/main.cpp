@@ -5,18 +5,20 @@
 #include <ftxui/screen/screen.hpp>
 #include <thread>
 #include <experimental/random>
-#include "Dibujo.hpp" // Incluimos la definición de la clase Dibujo
+#include "Archivo.hpp"
 
 using namespace ftxui;
 using namespace std;
 
 int main(int argc, char const* argv[]) {
-    vector<string> rutasElementos = {
-        "./assets/images/Pajaro.txt",
-        "./assets/images/Tuberia1.txt",
-        "./assets/images/Tuberia2.txt",
-        "./assets/images/Tuberia3.txt",
-        "./assets/images/Tuberia4.txt"
+    vector<string> rutasPiezas = {
+        "./assets/Pajaro.txt",
+        "./assets/tuberia1.txt",
+        "./assets/Tuberia2.txt",
+        "./assets/Tuberia3.txt",
+        "./assets/tuberia4.txt",
+
+        
     };
 
     auto Pantalla = Screen::Create(Dimension::Full(), Dimension::Full());
@@ -27,26 +29,19 @@ int main(int argc, char const* argv[]) {
 
         list<Dibujo> dibujos;
 
-        for (const auto& ruta : rutasElementos) {
-            ifstream archivo(ruta);
-            if (archivo) {
-                list<string> contenido;
-                string linea;
-                while (getline(archivo, linea)) {
-                    contenido.push_back(linea);
-                }
-                archivo.close();
-                Dibujo d(contenido, experimental::randint(0, 20), 0);
-                dibujos.push_back(d);
-            }
+        for (const auto& ruta : rutasPiezas) {
+            Archivo pieza(ruta);
+            Dibujo d = pieza.CrearDibujo();
+            d.EstablecerPosicion(experimental::randint(0, 20), 0); 
+            dibujos.push_back(d);
         }
 
         while (true) {
-            bool algunElementoCayendo = false;
+            bool algunaPiezaCayendo = false;
 
             for (auto& d : dibujos) {
                 if (!d.AlcanzaFondo(40)) {
-                    algunElementoCayendo = true;
+                    algunaPiezaCayendo = true;
                     d.MoverHaciaAbajo();
                     d.Dibujar(Pantalla);
                 }
@@ -57,7 +52,7 @@ int main(int argc, char const* argv[]) {
             this_thread::sleep_for(0.1s);
             Pantalla.Clear();
 
-            if (!algunElementoCayendo)
+            if (!algunaPiezaCayendo)
                 break;
         }
     }

@@ -3,10 +3,8 @@
 #include <list>
 #include <ftxui/screen/screen.hpp>
 using namespace std;
-
-class Obstaculo; // Declaración anticipada para evitar problemas de dependencia circular
-
-class Dibujo {
+class Dibujo
+{
 private:
     int posicionX;
     int posicionY;
@@ -43,27 +41,27 @@ public:
         posicionX = x;
         posicionY = y;
     }
-
+    //Trabajo en proceso 
     bool Colisiona(const Dibujo& otro) const {
         for (int y = 0; y < contenido.size(); y++) {
             for (int x = 0; x < contenido.front().size(); x++) {
                 int posX = posicionX + x;
                 int posY = posicionY + y;
-                if (posX >= otro.posicionX && posX < otro.posicionX + otro.contenido.front().size() &&
-                    posY >= otro.posicionY && posY < otro.posicionY + otro.contenido.size()) {
-                    return true;
-                }
+            if (posX >= otro.posicionX && posX < otro.posicionX + otro.contenido.front().size() &&
+                posY >= otro.posicionY && posY < otro.posicionY + otro.contenido.size()) {
+                return true; 
             }
         }
-        return false;
     }
-
+    return false;
+}
+    //Trabajo en proceso
     bool AlcanzaFondo(int altoPantalla) const {
         int posicionFinalY = posicionY + contenido.size();
         return posicionFinalY >= altoPantalla;
     }
 
     void MoverHaciaAbajo() {
-        posicionY++;
+        posicionX++;
     }
 };
