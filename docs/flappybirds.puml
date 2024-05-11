@@ -1,0 +1,72 @@
+@startuml flappy_bird
+
+class Juego {
+    -escenario
+    -ave
+    -puntuacion
+    -estado
+    +iniciarJuego()
+    +actualizarJuego()
+    +reiniciarJuego()
+}
+
+class Escenario {
+    -altura
+    -ancho
+    -obstaculos
+    +dibujarEscenario()
+    +generarObstaculos()
+    +eliminarObstaculos()
+}
+
+class Ave {
+    -posicion
+    -velocidad
+    -gravedad
+    +volar()
+    +caer()
+    +saltar()
+}
+
+class Puntuacion {
+    -puntos
+    +incrementarPuntuacion()
+}
+
+class Obstaculo {
+    -posicion
+    -tipo
+    +mover()
+    +dibujar()
+}
+
+class Estado {
+    -estadoActual
+    +cambiarEstado()
+}
+
+class Posicion {
+    -x
+    -y
+}
+
+class TipoObstaculo
+class Direccion
+
+Juego "1" *-- "1" Escenario
+Juego "1" *-- "1" Ave
+Juego "1" *-- "1" Puntuacion 
+Juego "1" *-- "1" Estado
+
+Escenario "1" *-- "*" Obstaculo
+
+Ave "1" *-- "1" Posicion
+
+Obstaculo "1" o-- "5" TipoObstaculo
+Obstaculo "1" *-- "1" Posicion
+Obstaculo "1" *-- "1" Direccion
+
+ObstaculoSuperior --|> TipoObstaculo
+ObstaculoInferior --|> TipoObstaculo
+
+@enduml
